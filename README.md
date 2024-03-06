@@ -10,7 +10,7 @@
 
 <h2>Environments and Technologies Used</h2>
 
-- Microsoft Azure (Virtual Machines/Compute)
+- Microsoft Azure (Virtual Machines/Computer)
 - Remote Desktop
 - Active Directory
 
@@ -89,18 +89,48 @@ The domain controller's virtual machine was not yet a domain controller. Once I 
 </p>
 
 <h2>Create an Admin Account in Active Directory</h2>
-
+I created two organizational units called “Employees” and “_Admins” 
 <p>
 
-
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/810fa197-8dac-4b68-b520-7e7085cd02fa)
 
 </p>
 
-<h2>Join the Client Computer to the Domain Controller</h2>
+I have created a user named “jane doe.” She is currently in the _ADMINS Organizational Unit but, she is not an admin yet.
 
 <p>
 
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/2d28b940-30ba-4703-ab9b-1372f23d06b3)
 
+</p>
+
+In order to make Jane an admin I had to add her to the “Domains Admins” Security Group.
+
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/e5a5dade-a64c-4d0d-8025-dae81ed39743)
+
+</p>
+Now Jane is an admin with the correct permissions to make changes to the domain controller.
+
+<h2>Join the Client Computer to the Domain Controller</h2>
+I set the client computer's DNS settings to the Domain controller's private IP address because Active Directory comes with  DNS services installed and in order for the client computer to join the Domain Controller it has to use the Domain Controller as a DNS server.
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/985d809c-8a77-463f-b189-53eb1ab23de5)
+
+</p>
+I joined the client computer to the domain.
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/3ab62133-95ff-4dbb-91ad-b068dfd35bb0)
+
+
+</p>
+Then I verified by checking if the client computer showed up in the Active Directory Users and Computers inside the “Computers” Container on the root of the domain on the domain controller.
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/22e056e0-0e96-45d5-8258-0464a05954b5)
 
 </p>
 
@@ -108,14 +138,61 @@ The domain controller's virtual machine was not yet a domain controller. Once I 
 
 <p>
 
-
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/0f04b73a-5cfe-483c-b988-4f516453d5df)
 
 </p>
 
 <h2>Creation of many users and attempt to log in to the client computer with one of the users</h2>
+This PowerShell script created 10,000 users
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/f5f2cc4b-9b82-490f-b1ed-5db61fc6e4a2)
+
+</p>
+
+This is the users being created
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/075282cc-cf5a-4f37-bd36-fbff9571e3e1)
+
+</p>
+
+I selected a random user from the created user. 
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/f9a214e5-8946-407f-800e-604da24892ba)
+
+</p>
+I used “bace.dop,” a random user to remote desk top into the client computer. Keep in mind that he has never signed into the client computer and can because he is part of the user group in the domain controller. Previously I set all domain users to be able to access the client computer.
 
 <p>
 
-
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/1181c9b8-47a7-4459-ac43-78247bc1cfdd)
 
 </p>
+
+<p>
+
+![image](https://github.com/CamdenBodden/Configuring-Active-Directory-within-Azure-VMs/assets/114665835/27132336-7213-48c3-be99-d7281a361610)
+
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
